@@ -17,9 +17,6 @@
   "dbGlobalTranPro": {
     "value": "OnePhaseCommit"
   },
-  "enableAAD": {
-    "value": false
-  },
   "enableAppGateway": {
     "value": false
   },
@@ -30,9 +27,6 @@
     "value": false
   },
   "enableDNSConfiguration": {
-    "value": false
-  },
-  "enableELK": {
     "value": false
   },
   "hasDNSZones": {
