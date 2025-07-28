@@ -1,4 +1,7 @@
 {
+  "location": {
+  	"value": "eastus"
+  },
   "adminPasswordOrKey": {
     "value": "Weblogic5678"
   },
