@@ -134,7 +134,7 @@
 		},
 		"testSummary": {
 			"type": "string",
-			"value": "[if((contains(variables('output_extensions')).instanceView.statuses[0].message,'ALL TESTS PASSED'),'ALL TESTS PASSED','ALL FAILED')]"			
+			"value": "[if(contains(reference(variables('output_extensions')).instanceView.statuses[0].message,'ALL TESTS PASSED'),'ALL TESTS PASSED','TESTS FAILED')]"			
 		}
 	}
 }
