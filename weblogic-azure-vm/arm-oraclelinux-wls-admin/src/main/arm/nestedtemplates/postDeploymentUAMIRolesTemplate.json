@@ -14,12 +14,6 @@
 		         "description": "A unique suffix that was specified during the deployment of the solution template."
 		    	}
 		   },
-		   "_artifactsLocation": {
-			     "type": "string",
-			     "metadata": {
-			        "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
-			     }
-		   },
 		   "tagsByResource": {
 		      "type": "object",
 		      "defaultValue": {},
@@ -33,13 +27,41 @@
 		       "metadata": {
 		           "description": "A unique string used to generate the role assignment name. Defaults to a unique GUID based on the deployment context."
 		       }
+		   },
+		   "_artifactsLocation": {
+		       "type": "string",
+		       "metadata": {
+		           "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
+		       }
+		   },
+		   "_artifactsLocationSasToken": {
+		       "type": "securestring",
+		       "metadata": {
+		           "description": "The sasToken required to access _artifactsLocation. When the template is deployed using the accompanying scripts, a sasToken will be automatically generated. Use the defaultValue if the staging location is not secured."
+		       },
+		       "defaultValue": ""
+		   },
+		   "guidTag": {
+		       "type": "string",
+		       "metadata": {
+		           "description": "A unique tag for identifying resources to be cleaned up."
+		       }
+		   },
+		   "utcValue": {
+		       "type": "string",
+		       "defaultValue": "[utcNow()]",
+		       "metadata": {
+		           "description": "UTC timestamp for force update tag."
+		       }
 		   }		   
 	},
 	"variables": {
 		"const_roleDefinitionIdOfContributor": "b24988ac-6180-42a0-ab88-20f7382dd24c",
 		"name_postDeploymentScriptUserDefinedManagedIdentity": "[concat('post-deployment-user-defined-managed-identity', parameters('_globalResourceNameSuffix'))]",
 		"name_postDeploymentScriptRoleAssignment": "[concat('post-deployment-user-defined-role-assignment', parameters('_globalResourceNameSuffix'))]",
-		"name_postDeploymentScriptRoleAssignmentTemplate": "postDeploymentRoleAssignmentTemplate.json"
+		"name_postDeploymentScript": "[concat('postdeploymentscript-', parameters('_globalResourceNameSuffix'))]",
+		"name_postDeploymentscriptFile": "postDeploymentScript.sh",
+		"const_scriptLocation": "[uri(parameters('_artifactsLocation'), 'scripts/')]"
 	},
 	"resources": [
 		{		
@@ -103,6 +125,46 @@
 					}				
 			    }
 			}		
+		},
+		{
+			"type": "Microsoft.Resources/deploymentScripts",
+			"apiVersion": "${azure.apiVersionForDeploymentScript}",
+			"tags": "[parameters('tagsByResource')['${identifier.deploymentScripts}']]",
+			"name": "[variables('name_postDeploymentScript')]",
+			"kind": "AzureCLI",
+			"location": "[parameters('location')]",
+			"identity": {
+				"type": "UserAssigned",
+				"userAssignedIdentities": {
+					"[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('name_postDeploymentScriptUserDefinedManagedIdentity'))]": {}
+				}
+			},
+			"properties": {
+				"forceUpdateTag": "[parameters('utcValue')]",
+				"azCliVersion": "2.41.0",
+				"timeout": "PT30M",
+				"cleanupPreference": "OnSuccess",
+				"retentionInterval": "P1D",
+				"primaryScriptUri": "[uri(variables('const_scriptLocation'), concat(variables('name_postDeploymentscriptFile'), parameters('_artifactsLocationSasToken')))]",
+				"environmentVariables": [
+					{
+						"name": "MANAGED_IDENTITY_ID",
+						"value": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('name_postDeploymentScriptUserDefinedManagedIdentity'))]"
+					},
+					{
+						"name": "RESOURCE_GROUP_NAME",
+						"value": "[resourceGroup().name]"
+					},
+					{
+						"name": "GUID_TAG",
+						"value": "[parameters('guidTag')]"
+					}
+				]
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('name_postDeploymentScriptUserDefinedManagedIdentity'))]",
+				"[resourceId('Microsoft.Resources/deployments', variables('name_postDeploymentScriptRoleAssignment'))]"
+			]
 		}
 	],
 	"outputs": {
