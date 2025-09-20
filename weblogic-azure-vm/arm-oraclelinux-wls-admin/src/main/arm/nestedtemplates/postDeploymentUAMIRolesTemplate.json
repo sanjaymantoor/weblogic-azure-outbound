@@ -46,6 +46,7 @@
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "${azure.apiVersionForDeployment}",
 			"name": "[variables('name_postDeploymentScriptRoleAssignment')]",
+			"subscriptionId": "[subscription().subscriptionId]",
 			"dependsOn": [
 			      "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('name_postDeploymentScriptUserDefinedManagedIdentity'))]"
 			],
