@@ -846,7 +846,7 @@
                 },
                "_globalResourceNameSuffix": {
                   "value": "[variables('const_globalResourceNameSuffix')]"
-               }
+               },
                "tagsByResource": {
                   "value": "[variables('obj_tagsByResources')]"
                }
