@@ -26,9 +26,6 @@
   "denyPublicTrafficForManagedServer": {
     "value": true
   },
-  "enableAAD": {
-    "value": false
-  },
   "enableAppGateway": {
     "value": true
   },
@@ -39,9 +36,6 @@
     "value": true
   },
   "enableDNSConfiguration": {
-    "value": false
-  },
-  "enableELK": {
     "value": false
   },
   "hasDNSZones": {
