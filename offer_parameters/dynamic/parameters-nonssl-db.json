@@ -14,9 +14,6 @@
   "dynamicClusterSize": {
     "value": 3
   },
-  "enableAAD": {
-    "value": false
-  },
   "enableCoherence": {
     "value": false
   },
@@ -27,9 +24,6 @@
     "value": true
   },
   "enableCustomDNS": {
-    "value": false
-  },
-  "enableELK": {
     "value": false
   },
   "enableOHS": {
