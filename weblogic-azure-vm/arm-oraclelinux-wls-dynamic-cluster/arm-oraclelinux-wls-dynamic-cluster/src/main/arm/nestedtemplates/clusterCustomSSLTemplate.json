@@ -499,6 +499,7 @@
         {
             "apiVersion": "2023-06-01",
             "type": "Microsoft.Network/publicIPAddresses",
+			"tags": "[if(equals(parameters('virtualNetworkNewOrExisting'), 'existing'),createObject(parameters('const_guidTag'),'')]",
             "name": "[if(equals(copyIndex(),0),concat(parameters('adminVMName'),variables('name_publicIPAddress')),concat(variables('const_managedVMPrefix'), copyIndex(),variables('name_publicIPAddress')))]",
             "location": "[parameters('location')]",
             "copy": {
@@ -1039,4 +1040,5 @@
         }
     }
 }
+
 
