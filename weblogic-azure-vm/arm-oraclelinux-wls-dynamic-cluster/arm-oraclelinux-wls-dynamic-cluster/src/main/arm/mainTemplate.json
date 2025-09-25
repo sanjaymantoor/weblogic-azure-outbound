@@ -1378,7 +1378,7 @@
 				"[resourceId('Microsoft.Resources/deployments', 'ohsLinkedTemplate')]",
 				"[resourceId('Microsoft.Resources/deployments', 'dnszonesLinkedTemplate')]",
 				"[resourceId('Microsoft.Resources/deployments', 'networkSecurityLinkedTemplate')]",
-				"[resourceId('Microsoft.Resources/deployments', variables('name_uamiForPostDeploymentScript')]"
+				"[resourceId('Microsoft.Resources/deployments', variables('name_uamiForPostDeploymentScript'))]"
 			],
 			"properties": {
 				"mode": "Incremental",
