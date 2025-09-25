@@ -1307,15 +1307,6 @@
 					},
 					"_globalResourceNameSuffix": {
 						"value": "[variables('const_globalResourceNameSuffix')]"
-					},
-					"_artifactsLocation": {
-						"value": "[parameters('_artifactsLocation')]"
-					},
-					"_artifactsLocationSasToken": {
-						"value": "[parameters('_artifactsLocationSasToken')]"
-					},
-					"guidTag": {
-						"value": "[variables('const_guidTag')]"
 					}
 				}
 			}

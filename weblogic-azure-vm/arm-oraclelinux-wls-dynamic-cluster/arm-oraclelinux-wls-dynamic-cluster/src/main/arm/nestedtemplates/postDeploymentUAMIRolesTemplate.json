@@ -14,13 +14,6 @@
 		         "description": "A unique suffix that was specified during the deployment of the solution template."
 		    	}
 		   },
-		   "tagsByResource": {
-		      "type": "object",
-		      "defaultValue": {},
-		      "metadata": {
-		         "description": "${label.tagsLabel}"
-		      }
-		   },
 		   "roleAssignmentNameSeed": {
 		       "type": "string",
 		       "defaultValue": "[guid(subscription().id, parameters('_globalResourceNameSuffix'))]",
@@ -38,7 +31,6 @@
 		{		
 		    "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
 		    "apiVersion": "${azure.apiVersionForIdentity}",
-		    "tags": "[parameters('tagsByResource')['${identifier.userAssignedIdentities}']]",
 		    "name": "[variables('name_postDeploymentScriptUserDefinedManagedIdentity')]",
 		    "location": "[parameters('location')]"
 		},
