@@ -1,0 +1,62 @@
+{
+  "adminPasswordOrKey": {
+    "value": "Weblogic5678"
+  },
+  "adminUsername": {
+    "value": "weblogic"
+  },
+  "authenticationType": {
+    "value": "password"
+  },
+  "databaseType": {
+    "value": "postgresql"
+  },
+  "denyPublicTrafficForManagedServer": {
+    "value": true
+  },
+  "dbGlobalTranPro": {
+    "value": "OnePhaseCommit"
+  },
+  "dynamicClusterSize": {
+    "value": 3
+  },
+  "enableCoherence": {
+    "value": true
+  },
+  "enableCoherenceWebLocalStorage": {
+    "value": true
+  },
+  "enableDB": {
+    "value": true
+  },
+  "enableCustomDNS": {
+    "value": false
+  },
+  "enableOHS": {
+    "value": false
+  },
+  "hasDNSZones": {
+    "value": false
+  },
+  "jdbcDataSourceName": {
+    "value": "jndi/test"
+  },
+  "maxDynamicClusterSize": {
+    "value": 8
+  },
+  "numberOfCoherenceCacheInstances": {
+    "value": 1
+  },
+  "vmSize": {
+    "value": "Standard_B1ms"
+  },
+  "vmSizeSelectForCoherence": {
+    "value": "Standard_B1ms"
+  },
+  "wlsPassword": {
+    "value": "Weblogic5678"
+  },
+  "wlsUserName": {
+    "value": "weblogic"
+  }
+}
