@@ -937,9 +937,6 @@
 					"_globalResourceNameSuffix": {
 						"value": "[variables('const_globalResourceNameSuffix')]"
 					},
-					"const_guidTag":{
-						"value": "[variables('const_guidTag')]"
-					},
 					"adminPasswordOrKey": {
 						"value": "[parameters('adminPasswordOrKey')]"
 					},
@@ -1378,7 +1375,8 @@
 				"[resourceId('Microsoft.Resources/deployments', 'ohsLinkedTemplate')]",
 				"[resourceId('Microsoft.Resources/deployments', 'dnszonesLinkedTemplate')]",
 				"[resourceId('Microsoft.Resources/deployments', 'networkSecurityLinkedTemplate')]",
-				"[resourceId('Microsoft.Resources/deployments', variables('name_uamiForPostDeploymentScript'))]"
+				"[resourceId('Microsoft.Resources/deployments', variables('name_uamiForPostDeploymentScript'))]",
+				"[resourceId('Microsoft.Resources/deployments','postDeplyment')]"
 			],
 			"properties": {
 				"mode": "Incremental",
